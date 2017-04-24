@@ -70,6 +70,28 @@ public class SystemInitService {
 			}
 		}
 		
+		ArrayList<Book> books2=new ArrayList<Book>();
+		Book book2=new Book();
+		book2.setName("魔界");
+		book2.setStudent(student1);
+		bookResponsitory.save(book2);
+		books2.add(book2);
+		
+//		student1.getBooks().clear();
+//		student1.getBooks().add(book2);
+		student1.setBooks(books2);
+		studentResponsitory.save(student1);
+		
+		student1=studentResponsitory.findOne(1L);
+		System.out.println("-----------------------------");
+		for(Book one:student1.getBooks()){
+			System.out.println("book:"+one.getName()+one.getId());
+			System.out.println("student:"+one.getStudent().getUsername());
+			for(Teacher two:one.getStudent().getTeachers())
+			{
+				System.out.println("teacher:"+two.getName()+two.getId());
+			}
+		}
 		
 	}
 }
